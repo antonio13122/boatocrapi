@@ -1,0 +1,32 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.env/
+env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model files
+*.pt
+
+# Uploaded content
+uploads/
+test_images/
+*.jpg
+*.png
+*.mp4
+
+# Logs or output
+runs/
+
+# VSCode config (optional)
+.vscode/
