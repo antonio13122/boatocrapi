@@ -1,0 +1,3 @@
+venv aktivacija -->  #PS C:\Users\LENOVO\Desktop\BTID\boat-ocr-api> .\venv\Scripts\Activate (venv) 
+install req.text: PS C:\Users\LENOVO\Desktop\BTID\boat-ocr-api> pip install -r requirements.txt
+pokret : uvicorn main:app --reload

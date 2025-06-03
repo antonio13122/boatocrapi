@@ -1,0 +1,6 @@
+path: dataset2
+train: images/train
+val: images/train
+
+names:
+  0: boat_name
