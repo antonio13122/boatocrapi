@@ -16,7 +16,7 @@ env/
 Thumbs.db
 
 # Model files
-*.pt
+
 
 # Uploaded content
 uploads/
