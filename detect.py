@@ -1,10 +1,12 @@
 import cv2
 import easyocr
 from ultralytics import YOLO
+import os
+os.environ["YOLO_CONFIG_DIR"] = "/tmp"
 
 # Initialize YOLO and OCR
 
-model = YOLO("runs/detect/best2/weights/best.pt")
+model = YOLO("models/best.pt")
 
 reader = easyocr.Reader(['en'], gpu=True)
 

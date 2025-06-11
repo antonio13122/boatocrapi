@@ -3,7 +3,7 @@ import os
 from detect import detect_boats_and_text
 
 
-def process_video(video_path, output_path="output_video.avi", skip_frames=10):
+def process_video(video_path, output_path="output_video.avi", skip_frames=15):
     cap = cv2.VideoCapture(video_path)
 
     if not cap.isOpened():
