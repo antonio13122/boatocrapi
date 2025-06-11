@@ -4,14 +4,13 @@ from ultralytics import YOLO
 import os
 os.environ["YOLO_CONFIG_DIR"] = "/tmp"
 
-# Initialize YOLO and OCR
+MODEL_PATH = os.path.join("models", "best.pt")
 
-model = YOLO("models/best.pt")
 
+model = YOLO(MODEL_PATH)  
 reader = easyocr.Reader(['en'], gpu=True)
 
 print("Model class names:", model.names)
-
 def detect_boats_and_text(image_path):
     results = model(image_path)[0]
     img = cv2.imread(image_path)
