@@ -30,3 +30,6 @@ runs/
 
 # VSCode config (optional)
 .vscode/
+
+dataset/
+dataset2/
