@@ -2,12 +2,23 @@ import cv2
 import easyocr
 from ultralytics import YOLO
 import os
+from huggingface_hub import hf_hub_download
 os.environ["YOLO_CONFIG_DIR"] = "/tmp"
 
-MODEL_PATH = os.path.join("models", "best.pt")
+##MODEL_PATH = os.path.join("models", "best.pt")
 
 
-model = YOLO(MODEL_PATH)  
+##model = YOLO(MODEL_PATH)  from huggingface_hub import hf_hub_download
+
+# Download from Hugging Face repo
+MODEL_PATH = hf_hub_download(
+    repo_id="asajbic/boatocrapi",  # 🔁 Replace with your HF repo
+    filename="best.pt",
+    cache_dir="models"  # Stores it in ./models to keep the path familiar
+)
+
+model = YOLO(MODEL_PATH)
+
 reader = easyocr.Reader(['en'], gpu=True)
 
 print("Model class names:", model.names)
