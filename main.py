@@ -5,6 +5,10 @@ import uuid
 import os
 from collections import Counter
 import re
+from pydantic import BaseModel
+from PIL import Image
+from io import BytesIO
+import base64
 
 from detect import detect_boats_and_text
 from video_utils import process_video, capture_from_webcam
@@ -20,6 +24,10 @@ app.add_middleware(
 
 UPLOAD_DIR = "uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+class Base64ImageRequest(BaseModel):
+    image: str  # base64 string from webcam snapshot
+
 
 @app.post("/detect")
 async def detect(image: UploadFile = File(...)):
@@ -68,3 +76,26 @@ async def detect_webcam():
         "output_path": processed_path,
         "detected_boat_names": detected_names
     }
+@app.post("/detect_frame")
+async def detect_frame(data: Base64ImageRequest):
+    try:
+        
+        if "," in data.image:
+            _, encoded = data.image.split(",", 1)
+        else:
+            encoded = data.image
+
+
+        image_bytes = base64.b64decode(encoded)
+        image = Image.open(BytesIO(image_bytes))
+        temp_path = os.path.join(UPLOAD_DIR, f"{uuid.uuid4().hex}.jpg")
+        image.save(temp_path)
+
+        # Run 
+        result = detect_boats_and_text(temp_path)
+        os.remove(temp_path) 
+
+        return {"detections": result}
+
+    except Exception as e:
+        return {"error": f"Failed to process image: {str(e)}"}

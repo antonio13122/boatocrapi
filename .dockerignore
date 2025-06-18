@@ -1,9 +1,11 @@
-
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+env/
 .venv/
-venv/
-.git/
-*.log
-build/
-dist/
+.vscode/
+*.mp4
+*.avi
+uploads/
+
